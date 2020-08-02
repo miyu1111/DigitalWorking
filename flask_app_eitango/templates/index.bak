@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Flask</title>
+    </head>
+    <body>
+        <h2>Translater</h2>
+        <h3>検索文字列</h3>
+        <form action="/" name="comment" method="POST">
+            <input type="text" value="{{ocr_strings}}" name="comment">
+            <input type="submit" id="search" name="search" value="Search">
+        </form>
+        <form action="/image" name="comment" method="POST">
+                <input type="submit" name="image" value="Import">
+        </form>
+        <form action="/reset" name="comment" method="POST">
+            <input type="submit" name="reset" value="Reset">
+        </form>
+        
+        <p><img src="../image/sample4.png" alt="imported img" title="imported img"></p>
+        <h3>検索結果</h3>
+        {% for show_list in show_lists %}
+        {{ show_list }}
+        <form method="POST" name="delete" action="/delete">
+            <input type="hidden" name="delete_id" value="{{ show_lists.index(show_list) }}">
+            <input type="submit" name="delete_id" value="削除">
+        </form>
+    </br>
+        {% endfor %}
+    </body>
+</html>
